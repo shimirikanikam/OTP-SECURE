@@ -31,3 +31,11 @@ def mobile_number_decoder(mobile_number_base64):
         return mobile_number
     except:
         return False
+    
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
